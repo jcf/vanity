@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+interval=`shuf -i 1-60 -n 1`
+echo >&2 "==> Waiting $interval seconds..."
+sleep "$interval"

@@ -1,0 +1,11 @@
+{:paths ["src"]
+
+ :aliases
+ {:invetica/media-types
+  {:extra-deps {invetica/media-types {:mvn/version "RELEASE"}}}
+
+  :invetica/spec
+  {:extra-deps {invetica/spec {:mvn/version "RELEASE"}}}
+
+  :invetica/uri
+  {:extra-deps {invetica/uri {:mvn/version "RELEASE"}}}}}

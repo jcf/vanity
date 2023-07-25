@@ -1,0 +1,11 @@
+*.class
+*.jar
+/.cpcache
+/.devenv/
+/.direnv/
+/.nrepl-history
+/.nrepl-port
+/checkouts
+/target
+pom.xml
+pom.xml.asc

@@ -1,0 +1,48 @@
+#+title: Vanity
+
+https://jamesconroyfinn.com/github-actions-and-vanity-metrics
+
+The KISS version for the time conscious:
+
+#+begin_src sh
+clojure -P -Sdeps \
+'{:deps
+  {invetica/media-types {:mvn/version "RELEASE"}
+   invetica/spec        {:mvn/version "RELEASE"}
+   invetica/uri         {:mvn/version "RELEASE"}}}'
+#+end_src
+
+* Have tools.deps download artefacts
+#+begin_src sh :results output verbatim :exports both
+bin/prepare
+#+end_src
+
+#+results:
+: {:aliases (:invetica/media-types),
+:  :cmd ["clojure" "-P" "-A:invetica/media-types"]}
+: --------------------------------------------------------------------------------
+: stderr
+: Downloading: invetica/media-types/maven-metadata.xml from clojars
+: Downloading: invetica/media-types/0.1.0/media-types-0.1.0.pom from clojars
+: Downloading: invetica/media-types/0.1.0/media-types-0.1.0.jar from clojars
+: --------------------------------------------------------------------------------
+:
+
+* Test
+** Build a container image
+#+begin_src sh :eval query
+docker build -t jcf/vanity .
+#+end_src
+
+** Prepare an alias
+#+begin_src sh :results output verbatim :exports both
+docker run jcf/vanity -P -A:invetica/spec:invetica/uri 2>&1
+#+end_src
+
+#+results:
+: Downloading: invetica/spec/maven-metadata.xml from clojars
+: Downloading: invetica/uri/maven-metadata.xml from clojars
+: Downloading: invetica/uri/0.5.0/uri-0.5.0.pom from clojars
+: Downloading: invetica/spec/0.5.0/spec-0.5.0.pom from clojars
+: Downloading: invetica/uri/0.5.0/uri-0.5.0.jar from clojars
+: Downloading: invetica/spec/0.5.0/spec-0.5.0.jar from clojars

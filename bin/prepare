@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec clojure -M --report stderr --main vanity.main deps.edn
